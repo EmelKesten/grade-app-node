@@ -15,6 +15,4 @@ app.post("/add-grade/:userId/:classId", addGrade);
 
 
 
-app.listen(port, () => {
-    console.log(`Server is running on http://localhost:${port}`);
-});
+app.listen(process.env.PORT || port);
