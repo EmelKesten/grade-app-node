@@ -10,10 +10,10 @@ const login = require("./components/login");
 
 
 app.post("/register", register);
+app.post("/login", login);
 app.post("/add-class/:userId", addClass);
 app.get("/get-classes/:userId", getClasses);
 app.post("/add-grade/:userId/:classId", addGrade);
-app.post("/login", login);
 
 
 

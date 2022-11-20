@@ -18,7 +18,7 @@ const addGrade = (req, res) => {
     }
     classObj.grades = grades;
     fs.writeFileSync("src/data/users.json", JSON.stringify(users));
-    res.status(200).send(newGrade);
+    res.status(200).send(classObj);
 }
 
 
