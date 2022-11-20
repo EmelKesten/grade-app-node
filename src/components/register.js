@@ -3,16 +3,16 @@ const uuid = require("uuid");
 const validator = require("validator");
 
 const register = (req, res) => {
-    const { email, password, name } = req.body;
-    const users = JSON.parse(fs.readFileSync("../data/users.json"));
+    const { email, password, firstName, lastName } = req.body;
+    const users = JSON.parse(fs.readFileSync("src/data/users.json"));
     const user = users.find((user) => user.email === email);
     if (user) {
         return res.status(400).json("Email already exists");
     }
-    if (!email || !password || !name) {
+    if (!email || !password || !firstName || !lastName) {
         return res.status(400).json("Please fill in all fields");
     }
-    if (validator.isEmail(email)) {
+    if (!validator.isEmail(email)) {
         return res.status(400).json("Please enter a valid email");
     }
     if (password.length < 8) {
@@ -22,12 +22,13 @@ const register = (req, res) => {
         id: uuid.v4(),
         email,
         password,
-        name,
-        notes: [],
+        firstName,
+        lastName,
+        classes: [],
     };
     users.push(newUser);
-    fs.writeFileSync("../data/users.json", JSON.stringify(users));
-    res.status(200).json("User registered successfully");
+    fs.writeFileSync("src/data/users.json", JSON.stringify(users));
+    res.status(200).send(newUser);
 };
 
 module.exports = register;
