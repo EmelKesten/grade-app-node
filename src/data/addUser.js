@@ -2,7 +2,7 @@ const {connectToCluster} = require("./server");
 const uuid = require("uuid");
 
 async function addUser(user) {
-  const uri = process.env.DB_URI;
+  const uri = "mongodb+srv://kestenemel:emy12153@cluster0.8meopda.mongodb.net/";
   let mongoClient;
 
   try {
