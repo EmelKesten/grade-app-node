@@ -1,16 +1,16 @@
-const fs = require("fs");
+const getUsers = require("../data/getUsers");
 
-const login = (req, res) => {
+const login = async (req, res) => {
   const { email, password } = req.body;
-  const users = JSON.parse(fs.readFileSync("src/data/users.json"));
+  const users = await getUsers();
   const user = users.find((user) => user.email === email);
   if (!user) {
-    return res.status(400).json("User does not exist");
+    return res.status(400).send("Email does not exist");
   }
   if (user.password !== password) {
-    return res.status(400).json("Incorrect password");
+    return res.status(400).send("Incorrect password");
   }
   res.status(200).send(user);
-};
+}
 
 module.exports = login;
