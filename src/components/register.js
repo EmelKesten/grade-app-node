@@ -4,7 +4,6 @@ const uuid = require("uuid");
 const validator = require("validator");
 
 const register = async (req, res) => {
-    console.log("register");
   const { email, password, firstName, lastName } = req.body;
   const users = await getUsers();
   console.log(users, "users")

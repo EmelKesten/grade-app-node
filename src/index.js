@@ -10,9 +10,11 @@ dotenv.config();
 //importing routes
 const register = require("./components/register");
 const login = require("./components/login");
+/*
 const addClass = require("./components/addClass");
 const getClasses = require("./components/getClasses");
 const addGrade = require("./components/addGrade");
+*/
 
 //routes
 app.post("/register", register);
