@@ -18,7 +18,7 @@ async function connectToCluster(uri) {
 }
 
 async function connect() {
-  const uri = process.env.DB_URI;
+  const uri = process.env.MONGODB_URI;
   let mongoClient;
 
   try {
