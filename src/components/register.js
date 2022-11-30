@@ -27,7 +27,15 @@ const register = async (req, res) => {
     classes: [],
   };
   addUser(newUser);
-  res.status(200).send(newUser);
+  res.status(200).send(
+    {
+        _id: newUser._id,
+        email: newUser.email,
+        firstName: newUser.firstName,
+        lastName: newUser.lastName,
+        classes: newUser.classes,
+    }
+  );
 };
 
 module.exports = register;
