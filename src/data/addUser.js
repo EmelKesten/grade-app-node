@@ -1,7 +1,7 @@
 const {connectToCluster} = require("./server");
 
 async function addUser(user) {
-  const uri = process.env.MONGODB_URI;
+  const uri = process.env.DB_URI;
   let mongoClient;
 
   try {

@@ -1,11 +1,11 @@
-const fs = require("fs");
+const { findUserByID } = require("../data/findUser");
+const editUser = require("../data/editUser");
 
-const addGrade = (req, res) => {
+const addGrade = async (req, res) => {
   const { grades } = req.body;
   const { userId, classId } = req.params;
-  const users = JSON.parse(fs.readFileSync("src/data/users.json"));
-  const user = users.find((user) => user.id === userId);
-  const classObj = user.classes.find((classObj) => classObj.id === classId);
+    const user = await findUserByID(userId);
+    const classObj = user[0].classes.find((classObj) => classObj.id === classId);
   if (!user) {
     return res.status(400).json("User does not exist");
   }
@@ -16,7 +16,7 @@ const addGrade = (req, res) => {
     return res.status(400).json("Please enter enter the grades");
   }
   classObj.grades = grades;
-  fs.writeFileSync("src/data/users.json", JSON.stringify(users));
+  editUser(user[0]);
   res.status(200).send(classObj);
 };
 

@@ -1,13 +1,11 @@
-const getUsers = require("../data/getUsers");
+const { findUserByEmail } = require("../data/findUser");
 const addUser = require("../data/addUser");
 const uuid = require("uuid");
 const validator = require("validator");
 
 const register = async (req, res) => {
   const { email, password, firstName, lastName } = req.body;
-  const users = await getUsers();
-  console.log(users, "users")
-  const user = users.find((user) => user.email === email);
+  const user = await findUserByEmail(email);
   if (user) {
     return res.status(400).json("Email already exists");
   }
