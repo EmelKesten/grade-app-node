@@ -18,7 +18,7 @@ const addClass = async (req, res) => {
     classes: [...user.classes, { name: className, id: uuid.v4(), grades: [] }],
   };
   editUser(newUser);
-  res.status(200).send(newUser);
+  res.status(200).send(newUser.classes);
 };
 
 module.exports = addClass;

@@ -1,4 +1,4 @@
-const { MongoClient } = require('mongodb');
+const { MongoClient } = require("mongodb");
 
 async function connectToCluster(uri) {
   let mongoClient;

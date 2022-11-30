@@ -10,8 +10,7 @@ async function getUsers() {
     const collection = db.collection("users");
 
     return await readStudentDocument(collection);
-  } 
-  finally {
+  } finally {
     await mongoClient.close();
   }
 }

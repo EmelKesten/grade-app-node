@@ -15,8 +15,6 @@ const calculateAverage = (grades) => {
   return calculateGradeAverage(newGrades);
 };
 
-
-
 const getUser = async (req, res) => {
   const { userId } = req.params;
   //const { Bearertoken } = req.headers;
@@ -27,7 +25,7 @@ const getUser = async (req, res) => {
   //if (user.token !== Bearertoken) {
   //return res.status(400).json("Invalid token");
   //}
-const classes = () => {
+  const classes = () => {
     if (!user[0].classes) {
       return [];
     }
