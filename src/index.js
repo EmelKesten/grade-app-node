@@ -5,6 +5,8 @@ const port = 8000;
 app.use(express.json());
 const dotenv = require("dotenv");
 dotenv.config();
+const cors = require("cors");
+app.use(cors());
 
 //importing routes
 const register = require("./components/register");
