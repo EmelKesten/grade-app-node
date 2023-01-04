@@ -1,4 +1,5 @@
 const { findUserByEmail } = require("../data/findUser");
+const bcrypt = require("bcrypt");
 
 const login = async (req, res) => {
   const { email, password } = req.body;
@@ -6,7 +7,8 @@ const login = async (req, res) => {
   if (!user) {
     return res.status(400).send("Email does not exist");
   }
-  if (user[0].password !== password) {
+  const passwordMatch = await bcrypt.compare(password, user[0].password);
+  if (!passwordMatch) {
     return res.status(400).send("Incorrect password");
   }
   res.status(200).send({

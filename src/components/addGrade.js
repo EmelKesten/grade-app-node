@@ -1,23 +1,21 @@
 const { findUserByID } = require("../data/findUser");
 const editUser = require("../data/editUser");
+const uuid = require("uuid");
 
 const addGrade = async (req, res) => {
-  const { grades } = req.body;
+  const { grade } = req.body;
   const { userId, classId } = req.params;
   const user = await findUserByID(userId);
   const classObj = user[0].classes.find((classObj) => classObj.id === classId);
-  if (!user) {
-    return res.status(400).json("User does not exist");
-  }
   if (!classObj) {
-    return res.status(400).json("Class does not exist");
+    return res.status(400).send("Class does not exist");
   }
-  if (!grades || grades.length === 0) {
-    return res.status(400).json("Please enter the grades");
-  }
-  classObj.grades = grades;
-  editUser(user[0]);
-  res.status(200).send(classObj);
+  classObj.grades.push({
+    id: uuid.v4(),
+    grade
+  });
+  await editUser(user[0]);
+  res.status(200).send(user[0].classes);
 };
 
 module.exports = addGrade;

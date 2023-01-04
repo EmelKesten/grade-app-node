@@ -13,6 +13,9 @@ const addClass = async (req, res) => {
   if (!className) {
     return res.status(400).json("Please enter a class name");
   }
+  if (user.classes.find((classObj) => classObj.name === className)) {
+    return res.status(400).json("Class already exists");
+  }
   const newUser = {
     _id: user._id,
     classes: [...user.classes, { name: className, id: uuid.v4(), grades: [] }],
