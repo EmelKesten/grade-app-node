@@ -15,14 +15,16 @@ const addClass = require("./components/addClass");
 const getUser = require("./components/getUser");
 const addGrade = require("./components/addGrade");
 const deleteGrade = require("./components/deleteGrade");
+const getAverage = require("./components/getAverage");
 
 //routes
 app.post("/register", register);
 app.post("/login", login);
-app.post("/add-class/:userId", addClass);
-app.get("/get-user/:userId", getUser);
-app.post("/add-grade/:userId/:classId", addGrade);
-app.delete("/delete-grade/:userId/:classId/:gradeId", deleteGrade);
+app.post("/add-class", addClass);
+app.get("/get-user", getUser);
+app.post("/add-grade/:classId", addGrade);
+app.delete("/delete-grade/:classId/:gradeId", deleteGrade);
+app.get("/get-average", getAverage);
 
 //404
 app.get("*", (req, res) => {
