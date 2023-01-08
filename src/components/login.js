@@ -12,7 +12,6 @@ const login = async (req, res) => {
     return res.status(400).send("Incorrect password");
   }
   res.status(200).send({
-    _id: user[0]._id,
     token: user[0].token,
     email: user[0].email,
     firstName: user[0].firstName,

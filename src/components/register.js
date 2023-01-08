@@ -31,13 +31,12 @@ const register = async (req, res) => {
     classes: [],
   };
   const token = jwt.sign({ _id: newUser._id }, "RS256", {
-    expiresIn: "10000d",
+    expiresIn: "10000000d",
   });
   newUser.token = token;
 
   addUser(newUser);
   res.status(200).send({
-    _id: newUser._id,
     token: newUser.token,
     email: newUser.email,
     firstName: newUser.firstName,

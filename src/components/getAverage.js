@@ -1,4 +1,5 @@
 const { findUserByID } = require("../data/findUser");
+const jwt = require("jsonwebtoken");
 
 const calculateGradeAverage = (grades) => {
     if (!grades || grades.length === 0) {

@@ -1,6 +1,6 @@
 const { findUserByID } = require("../data/findUser");
 const editUser = require("../data/editUser");
-
+const jwt = require("jsonwebtoken");
 
 const deleteGrade = async (req, res) => {
     const { classId, gradeId } = req.params;
@@ -15,7 +15,7 @@ const deleteGrade = async (req, res) => {
     if (!classObj) {
         return res.status(400).send("Class does not exist");
     }
-    const grade = classObj.grades.find((grade) => grade.id === gradeId);
+    const grade = classObj.grades.find((grade) => grade.id == gradeId);
     if (!grade) {
         return res.status(400).send("Grade does not exist");
     }
